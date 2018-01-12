@@ -60,7 +60,7 @@ def get_saml_client(org):
     return saml_client
 
 
-@blueprint.route(org_scoped_rule('/saml/callback'), methods=['POST'])
+@blueprint.route(org_scoped_rule('/saml/callback'))
 def idp_initiated():
     if not current_org.get_setting("auth_saml_enabled"):
         logger.error("SAML Login is not enabled")
@@ -68,7 +68,7 @@ def idp_initiated():
 
     saml_client = get_saml_client(current_org)
     authn_response = saml_client.parse_authn_request_response(
-        request.form['SAMLResponse'],
+        request.args.get('SAMLResponse'),
         entity.BINDING_HTTP_POST)
     authn_response.get_identity()
     user_info = authn_response.get_subject()
