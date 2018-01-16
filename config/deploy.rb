@@ -42,5 +42,5 @@ namespace :deploy do
   end
   after :deploy, "pip:install"
   after :deploy, "npm:run"
-
+  after :finished, "nginx:reload"
 end

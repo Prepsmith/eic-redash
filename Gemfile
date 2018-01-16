@@ -8,4 +8,5 @@ group :development do
   gem 'capistrano-virtualenv', require: false
   gem 'capistrano-npm', require: false
   gem 'capistrano-nvm', require: false
+  gem 'capistrano3-nginx', require: false
 end

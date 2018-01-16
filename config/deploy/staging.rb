@@ -27,4 +27,5 @@ server 'redash.staging.prepsmith.com', user: 'deployer', roles: %w{web app db}, 
 
 # whether we're using ssl or not, used for building nginx
 # config file
-set :enable_ssl, false
+set :enable_ssl, true
+set :nginx_use_ssl, true
