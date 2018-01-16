@@ -1,5 +1,5 @@
 namespace :pip do
-  desc "We do install or make sure last pip module required all install"
+  desc "We install or make sure last pip modulesrequired are all install"
   task :install do
   	on roles(:all) do
       within release_path do
