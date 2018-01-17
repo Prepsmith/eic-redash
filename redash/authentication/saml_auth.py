@@ -81,11 +81,11 @@ def get_saml_client():
     return saml_client
 
 
-@blueprint.route("/saml/callback", methods=['POST'])
+@blueprint.route("/saml/callback")
 def idp_initiated():
     saml_client = get_saml_client()
     authn_response = saml_client.parse_authn_request_response(
-        request.form['SAMLResponse'],
+        request.args.get('SAMLResponse'),
         entity.BINDING_HTTP_POST)
     authn_response.get_identity()
     user_info = authn_response.get_subject()
