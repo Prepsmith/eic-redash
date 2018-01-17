@@ -27,7 +27,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('node_modules', 'client/dist', 'v
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-set :nvm_node, 'v7.1.0'
+set :nvm_node, 'v8.5.0'
 set :nvm_map_bins, %w{node npm yarn forever}
 
 set :virtualenv_path, "/venv"
