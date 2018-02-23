@@ -19,10 +19,10 @@ set :pty, true
 set :deploy_user, "deployer"
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('.env')
+set :linked_files, fetch(:linked_files, []).push('.env', 'gunicorn.py')
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('node_modules', 'client/dist', 'venv');
+set :linked_dirs, fetch(:linked_dirs, []).push('node_modules', 'client/dist', 'venv', 'log');
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -30,7 +30,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('node_modules', 'client/dist', 'v
 set :nvm_node, 'v7.1.0'
 set :nvm_map_bins, %w{node npm yarn forever}
 
-set :virtualenv_path, "/venv"
+set :virtualenv_path, "venv"
 
 # Default value for keep_releases is 5
 set :keep_releases, 3
@@ -44,6 +44,7 @@ namespace :deploy do
   end
   after :deploy, "pip:install"
   after :deploy, "npm:run"
+  after :deploy, "redash:kill_gunicorn"
   after :deploy, "redash:start_redash"
   after :deploy, "redash:start_celery_worker"
   after :deploy, "redash:start_celery_scheduled_worker"

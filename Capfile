@@ -5,7 +5,7 @@ require "capistrano/setup"
 require "capistrano/deploy"
 require 'capistrano/npm'
 require 'capistrano/nvm'
-require 'capistrano/virtualenv'
+# require 'capistrano/virtualenv'
 require 'capistrano/nginx'
 
 # Load the SCM plugin appropriate to your project:
