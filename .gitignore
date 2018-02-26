@@ -18,6 +18,8 @@ _build
 
 dump.rdb
 
+log
+/venv
 node_modules
 .tmp
 .sass-cache
