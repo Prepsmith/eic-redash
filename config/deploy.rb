@@ -45,8 +45,8 @@ namespace :deploy do
   after :deploy, "pip:install"
   after :deploy, "npm:run"
   after :deploy, "redash:kill_gunicorn"
+  after :deploy, "redash:kill_celery"
   after :deploy, "redash:start_redash"
-  after :deploy, "redash:start_celery_worker"
-  after :deploy, "redash:start_celery_scheduled_worker"
+  after :deploy, "redash:restart_supervisor"
   after :finished, "nginx:reload"
 end
