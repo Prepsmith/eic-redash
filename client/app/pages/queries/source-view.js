@@ -44,6 +44,8 @@ function QuerySourceCtrl(
     KeyboardShortcuts.unbind(shortcuts);
   });
 
+  $scope.canForkQuery = () => currentUser.hasPermission('edit_query') && !$scope.dataSource.view_only;
+
   // @override
   $scope.saveQuery = (options, data) => {
     const savePromise = saveQuery(options, data);
@@ -110,6 +112,7 @@ export default function init(ngModule) {
   return {
     '/queries/new': {
       template,
+      layout: 'fixed',
       controller: 'QuerySourceCtrl',
       reloadOnSearch: false,
       resolve: {
@@ -127,6 +130,7 @@ export default function init(ngModule) {
     },
     '/queries/:queryId/source': {
       template,
+      layout: 'fixed',
       controller: 'QuerySourceCtrl',
       reloadOnSearch: false,
       resolve: {
